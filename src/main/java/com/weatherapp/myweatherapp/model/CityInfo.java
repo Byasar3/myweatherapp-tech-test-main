@@ -1,6 +1,7 @@
 package com.weatherapp.myweatherapp.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
 public class CityInfo {
@@ -35,6 +36,15 @@ public class CityInfo {
 
     @JsonProperty("conditions")
     String conditions;
+
+    public String getSunrise() {
+      return sunrise;
+    }
+
+    public String getSunset() {
+      return sunset; 
+    }
+
   }
 
   static class Days {
@@ -57,6 +67,40 @@ public class CityInfo {
     @JsonProperty("description")
     String description;
 
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public CurrentConditions getCurrentConditions() {
+    return currentConditions;
+  }
+
+  public List<Days> getDays() {
+    return days;
+  }
+  
+  public String getSunrise() {
+    if (currentConditions != null) {
+      return currentConditions.getSunrise();
+    }
+    return null;
+  }
+
+  public String getSunset() {
+    if (currentConditions != null) {
+      return currentConditions.getSunset();
+    }
+    return null;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 }

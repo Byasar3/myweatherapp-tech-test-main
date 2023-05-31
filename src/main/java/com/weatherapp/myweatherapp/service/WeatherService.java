@@ -2,6 +2,9 @@ package com.weatherapp.myweatherapp.service;
 
 import com.weatherapp.myweatherapp.model.CityInfo;
 import com.weatherapp.myweatherapp.repository.VisualcrossingRepository;
+
+import java.time.LocalTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +17,26 @@ public class WeatherService {
   public CityInfo forecastByCity(String city) {
 
     return weatherRepo.getByCity(city);
+  }
+
+  public LocalTime getSunriseTime(String city) {
+
+    CityInfo cityInfo = weatherRepo.getByCity(city);
+    String sunriseTimeString = cityInfo.getSunrise();
+
+    // parse sunrise time string to localtime
+    LocalTime sunriseTime = LocalTime.parse(sunriseTimeString);
+
+    return sunriseTime;
+  }
+
+  public LocalTime getSunsetTime(String city) {
+    CityInfo cityInfo = weatherRepo.getByCity(city);
+    String sunsetTimeString = cityInfo.getSunset();
+
+    // parse sunset time string to localtime
+    LocalTime sunsetTime = LocalTime.parse(sunsetTimeString);
+
+    return sunsetTime;
   }
 }
