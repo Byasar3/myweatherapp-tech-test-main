@@ -50,10 +50,6 @@ public class WeatherController {
 
     Duration city2DaylightDuration = calculateDaylightDuration(city2SunriseTime, city2SunsetTime);
 
-    // Output the calculated daylight hours to the console
-    System.out.println("City 1 daylight duration: " + city1DaylightDuration);
-    System.out.println("City 2 daylight duration: " + city2DaylightDuration);
-
     // Update the CityInfo object with the city that has the longest day
     CityInfo cityInfo = new CityInfo();
     if (city1DaylightDuration.compareTo(city2DaylightDuration) > 0) {
@@ -63,7 +59,7 @@ public class WeatherController {
     } else {
       cityInfo.setDescription("Both cities have the same daylight duration.");
     }  
-    System.out.println(cityInfo);
+
     // return the description 
     return ResponseEntity.ok(cityInfo);  
     
