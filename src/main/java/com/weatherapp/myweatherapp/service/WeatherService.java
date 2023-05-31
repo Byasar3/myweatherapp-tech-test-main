@@ -13,6 +13,9 @@ public class WeatherService {
 
   @Autowired
   VisualcrossingRepository weatherRepo;
+  public WeatherService(VisualcrossingRepository weatherRepo) {
+    this.weatherRepo = weatherRepo;
+  }
 
   public CityInfo forecastByCity(String city) {
 
