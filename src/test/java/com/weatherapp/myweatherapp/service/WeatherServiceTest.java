@@ -2,8 +2,8 @@ package com.weatherapp.myweatherapp.service;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WeatherServiceTest {
+import org.junit.jupiter.api.Test;
 
-  // TODO: 12/05/2023 write unit tests
+class WeatherServiceTest {
 
 }
