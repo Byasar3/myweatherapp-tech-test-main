@@ -65,7 +65,28 @@ public class WeatherController {
     
   }
 
-
   // TODO: given two city names, check which city its currently raining in
+  @GetMapping("/current-rain-city")
+  public ResponseEntity<String> getCurrentRainCity(@RequestParam("city1") String city1, @RequestParam("city2") String city2) {
+    // Check if city1 is currently experiencing rain
+    boolean city1HasRain = weatherService.hasRain(city1);
 
+    // Check if city2 is currently experiencing rain
+    boolean city2HasRain = weatherService.hasRain(city2);
+
+    // Build the response message
+    String response;
+    if (city1HasRain && city2HasRain) {
+      response = "Both " + city1 + " and " + city2 + " are currently experiencing rain.";
+    } else if (city1HasRain) {
+      response = city1 + " is currently experiencing rain.";
+    } else if (city2HasRain) {
+      response = city2 + " is currently experiencing rain.";
+    } else {
+      response = "Neither " + city1 + " nor " + city2 + " is currently experiencing rain.";
+    }
+
+    return ResponseEntity.ok(response);
+  }
 }
+

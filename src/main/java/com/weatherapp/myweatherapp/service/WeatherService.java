@@ -39,4 +39,14 @@ public class WeatherService {
 
     return sunsetTime;
   }
+
+  public boolean hasRain(String city) {
+    CityInfo cityInfo = weatherRepo.getByCity(city);
+
+    if (cityInfo != null && cityInfo.getCurrentConditions() != null) {
+      String conditions = cityInfo.getCondition();
+      return conditions != null && conditions.toLowerCase().contains("rain");
+    }
+    return false;
+  }
 }
